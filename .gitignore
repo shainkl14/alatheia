@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.astro/
+managed/
+midnight-level-db/
+.env
+.env.production
+*.local
