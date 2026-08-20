@@ -1,0 +1,68 @@
+{
+  "name": "aletheia",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "scripts": {
+    "compile": "cd contracts && compact compile +0.31.1 aletheia.compact managed/aletheia",
+    "compile:fast": "cd contracts && compact compile +0.31.1 --skip-zk aletheia.compact managed/aletheia",
+    "test": "NODE_OPTIONS='--experimental-vm-modules' vitest run",
+    "test:local": "MIDNIGHT_NETWORK=undeployed yarn test",
+    "deploy": "NODE_OPTIONS='--experimental-vm-modules' tsx src/deploy.ts",
+    "deploy:undeployed": "MIDNIGHT_NETWORK=local yarn deploy",
+    "deploy:preview": "MIDNIGHT_NETWORK=preview yarn deploy",
+    "deploy:preprod": "MIDNIGHT_NETWORK=preprod yarn deploy",
+    "cli": "NODE_OPTIONS='--experimental-vm-modules' tsx src/cli.ts",
+    "sync:zk": "node scripts/sync-zk-assets.mjs",
+    "web:install": "cd web && yarn install",
+    "web:dev": "yarn sync:zk && cd web && yarn dev",
+    "web:build": "yarn sync:zk && cd web && yarn build",
+    "env:up": "docker compose up -d --wait node indexer",
+    "env:up:all": "docker compose up -d --wait",
+    "env:down": "docker compose down",
+    "setup:l1": "bash scripts/setup-l1.sh",
+    "verify:l1": "yarn compile && yarn test:local",
+    "validate": "yarn setup:l1"
+  },
+  "dependencies": {
+    "@midnight-ntwrk/compact-js": "2.5.1",
+    "@midnight-ntwrk/compact-runtime": "0.16.0",
+    "@midnight-ntwrk/midnight-js-contracts": "4.1.1",
+    "@midnight-ntwrk/midnight-js-http-client-proof-provider": "4.1.1",
+    "@midnight-ntwrk/midnight-js-indexer-public-data-provider": "4.1.1",
+    "@midnight-ntwrk/midnight-js-level-private-state-provider": "4.1.1",
+    "@midnight-ntwrk/midnight-js-network-id": "4.1.1",
+    "@midnight-ntwrk/midnight-js-node-zk-config-provider": "4.1.1",
+    "@midnight-ntwrk/midnight-js-protocol": "4.1.1",
+    "@midnight-ntwrk/midnight-js-types": "4.1.1",
+    "@midnight-ntwrk/midnight-js-utils": "4.1.1",
+    "@midnight-ntwrk/wallet-sdk": "1.2.0",
+    "axios": "^1.15.0",
+    "pino": "^9.0.0",
+    "pino-pretty": "^13.0.0",
+    "rxjs": "^7.8.2",
+    "testcontainers": "^11.13.0",
+    "ws": "^8.14.2"
+  },
+  "devDependencies": {
+    "@midnight-ntwrk/midnight-js-compact": "4.1.1",
+    "@midnight-ntwrk/testkit-js": "4.1.1",
+    "@types/node": "^22.0.0",
+    "@types/ws": "^8.5.9",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0",
+    "vitest": "^3.0.0"
+  },
+  "resolutions": {
+    "@midnight-ntwrk/compact-js": "2.5.1",
+    "@midnight-ntwrk/ledger-v8": "8.1.0",
+    "@midnight-ntwrk/midnight-js-network-id": "4.1.1",
+    "@midnight-ntwrk/midnight-js-types": "4.1.1",
+    "@midnight-ntwrk/compact-runtime": "0.16.0",
+    "@midnight-ntwrk/wallet-sdk-facade": "4.0.1"
+  },
+  "packageManager": "yarn@1.22.22"
+}
