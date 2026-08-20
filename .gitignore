@@ -10,5 +10,7 @@ alt-private-state-*/
 midnight-level-db/
 web/dist/
 web/node_modules/
+web/public/zk/
+web/.astro/
 .vercel
 .astro/

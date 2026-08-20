@@ -1,0 +1,55 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="For Sources" description="Read this before you send anything.">
+  <p class="label">Read this first</p>
+  <h2>If you are thinking about sending something</h2>
+  <p>
+    This is not technical. It takes about five minutes, and it covers the mistakes that actually
+    get people identified — which are almost never cryptographic.
+  </p>
+
+  <div class="callout vermilion">
+    <p style="margin-bottom: 0;">
+      <strong>Cryptography is not your main risk.</strong> In nearly every case where a source has
+      been identified, the failure was ordinary: a work computer, being one of a handful of people
+      with access, searching for the journalist's name beforehand, or an invisible watermark in the
+      document itself. Aletheia protects the file. You have to protect you.
+    </p>
+  </div>
+
+  <h3>Before you do anything</h3>
+  <p>
+    <strong>Not on a work device. Not on a work network.</strong> Employers log more than people
+    expect, and the log is the first thing examined. Use a personal device, on a network that is
+    not yours and not your employer's.
+  </p>
+  <p>
+    <strong>Do not research this first from your own account.</strong> Looking up this site or "how
+    to leak safely" from a traceable account establishes intent and timing before you have started.
+  </p>
+  <p>
+    <strong>Consider Tor.</strong> If the fact that you visited this site at all is dangerous, use
+    it.
+  </p>
+  <p>
+    <strong>Think about who else could have this.</strong> If only a handful of people can access
+    what you're sending, no technology makes you anonymous by itself. Talk to a journalist about it
+    before sending anything.
+  </p>
+
+  <h3>About the file itself</h3>
+  <p>
+    Photographs and video from a modern camera or phone may carry a signature proving they are
+    real. That's useful — it's what lets a newsroom trust what you send. It also contains where,
+    when, and on what device. Aletheia's drop shows you everything hidden inside your file before
+    anything is sent, and lets you choose how coarsely to disclose region and time — the file
+    itself never leaves your device.
+  </p>
+
+  <p class="note">
+    This page is a condensed adaptation of <code>docs/for-sources.md</code> in this repository,
+    which has more detail on threat models per adversary type.
+  </p>
+</Base>

@@ -1,0 +1,16 @@
+---
+import Base from '../layouts/Base.astro';
+import Ledger from '../components/Ledger';
+---
+
+<Base title="The Ledger" description="The public record of what has been disclosed, in aggregate.">
+  <p class="label">Public record</p>
+  <h2>What has been disclosed</h2>
+  <p>
+    Every row here is a submission: a nullifier (so anyone can check no capture was counted twice),
+    the region and year its source chose to disclose, and nothing else. Reading this list requires
+    the address of a deployed Aletheia contract and talks directly to a Midnight indexer from your
+    browser — no server of ours is involved.
+  </p>
+  <Ledger client:load />
+</Base>
