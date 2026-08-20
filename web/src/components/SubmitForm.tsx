@@ -113,6 +113,7 @@ export default function SubmitForm() {
           </div>
           {mediaHash && (
             <div class="callout">
+              {file && <p class="label">{file.name}</p>}
               <p class="label">Media hash (SHA-256)</p>
               <p class="mono" style="margin-bottom: 0;">{mediaHash}</p>
             </div>

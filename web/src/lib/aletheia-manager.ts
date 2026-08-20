@@ -11,11 +11,11 @@ import {
   firstValueFrom,
   interval,
   map,
-  pipe as fnPipe,
   take,
   throwError,
   timeout,
 } from 'rxjs';
+import { pipe as fnPipe } from 'fp-ts/function';
 import semver from 'semver';
 import type { ConnectedAPI, InitialAPI } from '@midnight-ntwrk/dapp-connector-api';
 import { setNetworkId, type NetworkId } from '@midnight-ntwrk/midnight-js-network-id';
