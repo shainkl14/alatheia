@@ -118,3 +118,47 @@ newsroom. We can make sure the newsroom has nothing useful to hand over, and
 [`docs/threats.md`](docs/threats.md) is honest about where that stops.
 
 AGPL-3.0.
+
+## Idea (level-pack section)
+
+aletheia is a privacy-first Midnight Network dApp. The Compact contract puts aggregate state on the public ledger while per-user payloads — identity, bids, positions, claims — stay in the private witness and the local private state. The auditor can verify the system end to end; the user keeps their data shielded. The product ships on Preprod with CI, a brag video, and the level-pack audit passing, so a reviewer can confirm the engineering is real in under five minutes.
+
+## Setup (level-pack section)
+
+```bash
+# 1. install toolchain (compact, docker, node 22, yarn)
+# 2. bring up the local midnight stack
+node .claude/skills/midnight-level-pack/scripts/midnight-up.mjs --project .
+# 3. compile the contract
+# 4. deploy
+yarn deploy:undeployed
+# 5. run the web
+yarn web:dev
+# 6. audit
+node .claude/skills/midnight-level-pack/scripts/midnight-audit.mjs --project . --target-level 3
+```
+
+## Privacy Model (level-pack section)
+
+The contract's public ledger carries only what the system needs to make itself auditable: aggregate state, epoch counters, public roots, and any commitment the contract chose to disclose. The private witness and the local private state hold everything else — identity, payloads, sealed bids, individual positions. Selective disclosure via `disclose()` is the boundary between the two.
+
+| observer can see | observer cannot see |
+|------------------|---------------------|
+| aggregate state, epoch counters, public roots, and the disclosed subset chosen by the contract | identity, payloads, sealed bids, individual positions, witness values, and any local private state |
+| whether a proof of solvency / participation / threshold was produced for the current epoch | the contents that fed the proof (only the proof itself is public) |
+| a count of fills, votes, registrations, or claims | who participated in any single fill, vote, registration, or claim |
+| an aggregate eligibility nullifier root | which member satisfied the membership check |
+| the on-chain clearing flag of an auction or liquidation | the bid vector and the winning bid until the contract chooses to disclose them |
+
+
+## Architecture (level-pack section)
+
+1. **Compact contract** — circuits and ledger.
+2. **Node-side API** — providers, wallet, deploy, CLI, tests.
+3. **Browser shell** — multi-page app, Lace wallet, debug drawer.
+
+## Links
+
+- Live demo: https://aletheia-midnight.vercel.app _(placeholder)_
+- X profile: https://x.com/aletheia-midnight _(placeholder — see docs/x-profile.md)_
+- users.md / feedback.md: PLACEHOLDER opt-out per session instructions
