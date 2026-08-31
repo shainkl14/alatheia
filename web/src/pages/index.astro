@@ -1,0 +1,56 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="About" description="Aletheia: authenticity proofs for whistleblowers, without identity.">
+  <p class="label">Vol. 1 — Prototype</p>
+  <h2>The authenticity problem, and the anonymity problem, are the same problem</h2>
+  <p>
+    A newsroom needs two things from a source before it will run a story: proof that a file is
+    real, and enough trust in the source's safety that they were willing to send it. Historically
+    these have pulled against each other — the more a file proves about itself (device, time,
+    place, signing certificate), the more it can also identify the person who captured it.
+  </p>
+  <p>
+    Aletheia is an attempt to separate them. A source's device can sign a photograph or video with
+    a manufacturer certificate proving it was captured on real hardware, not generated. Aletheia
+    lets a source submit a zero-knowledge proof over that signed file — <em>this was captured in
+    this region, during this period, by a device with a valid signature</em> — without ever
+    revealing the file, the certificate, or who they are. The proof is checked on Midnight, a
+    public ledger built for exactly this kind of disclosure control.
+  </p>
+
+  <h2>What exists right now</h2>
+  <p>
+    This is a working prototype, not a finished product. The circuit currently deployed proves one
+    claim: a submission binds a public media hash to a region and a year the source chooses to
+    disclose, and a nullifier derived from a secret that never leaves the source's browser prevents
+    the same capture from being submitted twice — without the nullifier revealing who submitted it.
+  </p>
+  <p class="note">
+    The fuller design — in-circuit verification of manufacturer certificates, a revocation list, a
+    jury threshold before a submission can be opened by a newsroom — is written out in
+    <code>docs/protocol.md</code> in this repository. It is not yet implemented in the contract.
+    Nothing on this site claims otherwise.
+  </p>
+
+  <hr class="rule" />
+
+  <h2>Two products, one repository</h2>
+  <p>
+    <strong>The Drop</strong> — for a source, used once, possibly under stress. Slow, calm,
+    impossible to rush.
+  </p>
+  <p>
+    <strong>The Ledger</strong> — the public record of submissions: what has been disclosed, in
+    aggregate, to anyone who wants to check the newsroom is not fabricating claims of corroboration.
+  </p>
+
+  <div class="callout">
+    <p class="label" style="margin-bottom: 8px;">Before you send anything</p>
+    <p style="margin-bottom: 0;">
+      Cryptography is not your main risk. Read <a href="/for-sources">For Sources</a> first — five
+      minutes, and it covers the mistakes that actually get people caught.
+    </p>
+  </div>
+</Base>

@@ -1,0 +1,18 @@
+{
+  "id": "blueprint-engineering",
+  "label": "Blueprint Engineering",
+  "primary": "#1B3A57",
+  "secondary": "#0E1F2E",
+  "ink": "#0A1828",
+  "paper": "#D6E4F0",
+  "accent": "#F0A202",
+  "font": "'IBM Plex Sans', 'Inter', system-ui",
+  "rules": "blueprint-grid background (5% opacity), monospace numerics, 1px technical lines, dimensioned callouts, all measurements shown",
+  "mood": "engineered, calm, audited",
+  "best_for": [
+    "eclipse-engine",
+    "zerotrust-dao",
+    "shadowstate",
+    "ghostmind"
+  ]
+}

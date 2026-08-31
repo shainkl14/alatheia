@@ -1,0 +1,49 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Provenance without identity.' } = Astro.props;
+const path = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} — Aletheia</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="noindex, nofollow" />
+  </head>
+  <body>
+    <header class="container">
+      <div class="masthead">
+        <a href="/" class="no-underline" style="text-decoration: none; color: inherit;">
+          <h1>ALETHEIA</h1>
+        </a>
+        <p class="tagline">Provenance without identity.</p>
+      </div>
+      <nav class="masthead-nav">
+        <a href="/" aria-current={path === '/' ? 'page' : undefined}>About</a>
+        <a href="/submit" aria-current={path === '/submit' ? 'page' : undefined}>The Drop</a>
+        <a href="/ledger" aria-current={path === '/ledger' ? 'page' : undefined}>The Ledger</a>
+        <a href="/for-sources" aria-current={path === '/for-sources' ? 'page' : undefined}>For Sources</a>
+      </nav>
+      <hr class="rule-heavy" />
+    </header>
+    <main class="container">
+      <slot />
+    </main>
+    <footer class="container">
+      <p>
+        No tracking. No cookies. No analytics. No CDN. Everything on this page was served from this
+        origin, including its fonts.
+      </p>
+      <p>Aletheia is a research prototype built on Midnight. This is not legal advice.</p>
+    </footer>
+  </body>
+</html>

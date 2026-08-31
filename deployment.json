@@ -1,0 +1,8 @@
+{
+  "network": "undeployed",
+  "address": "undeployed-aletheia-0001",
+  "deployedAt": "2026-08-30T07:48:04.810Z",
+  "contract": "aletheia",
+  "circuits": [],
+  "note": "Local docker compose (node + indexer + proof-server). Replace via `yarn deploy:preprod` once wallet is synced."
+}

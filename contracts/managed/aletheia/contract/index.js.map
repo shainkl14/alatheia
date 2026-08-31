@@ -1,0 +1,8 @@
+{
+  "version": 3,
+  "file": "index.js",
+  "sourceRoot": "../../../",
+  "sources": ["aletheia.compact", "compiler/standard-library.compact"],
+  "names": [],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;EAAA;;;;;;;;;;;;;MAsBA,AAAA,mBAIC;;OAAA;MAMD,AAAA,MAaC;;;;;cAZC,WAAoB;cACpB,UAAmB;cACnB,YAAoB;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;yCAFpB,WAAoB,+BACpB,UAAmB,+BACnB,YAAoB;;;;;;;;;wCAFpB,WAAoB;wCACpB,UAAmB;wCACnB,YAAoB;;;OAUrB;;;;GACA;EA9CD;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;IAiBA;;;;;;;;;;yEAA4D;IAC5D;;;;;;;;;yEAAuC;;;;;;;GA4BtC;EC9CD,AAAA,kBAAA;oEAAA;;;EDoBA,AAAA,eAAkC;;0DAAlC,YAAkC;;;;;;;;;;;;;;GAAA;EAElC,AAAA,sBAIC,CAJkC,WAAoB,EAAE,IAAa;;mCAE1C,WAAS;mCAAE,IAAE;GAExC;EAMD,AAAA,SAaC,4BAZC,WAAoB,EACpB,UAAmB,EACnB,YAAoB;UAEd,GAA4D,+BAA3B,WAAS;;;qDACxC;;;;;;;;;;;4KAA4B,GAAC;;;;0HAAlB;;UAEnB,KAAW,eACU,UAAQ,cACN,YAAU;IAFjC;;;;;;;;;;2HAA4B,GAAC;;;2HAA7B,KAAW;;;wEAAA;UAIX,KAAe;IAAf;;;;;;;;;;6FAAA,KAAe;;;;wEAAA;;GAChB;;;;;;;;;;;;;;;;IA5BD;;;;;uCAAA;;;;;;;;;;;;;;;;4GAA4D;;;;;;uCAA5D;;;;;;;;;;;;4GAA4D;;;;;;;;;;;;;;uCAA5D;;;;;;;;;;;;;;;4GAA4D;;;;;;;;;;;;;;uCAA5D;;;;;;;;;;;;;;;;;4GAA4D;;;;;;;;;KAAA;IAC5D;qCAAA;;;;;;;;;;;0GAAuC;KAAA;;;;;;;;EAIvC,AAAA,mBAIC;;;;UAJkC,WAAoB;UAAE,IAAa;;;;;;;;;;;;;;;iDAAnC,WAAoB,EAAE,IAAa;GAIrE;;;;"
+}

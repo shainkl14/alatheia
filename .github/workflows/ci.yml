@@ -1,0 +1,35 @@
+name: ci
+on:
+  push: { branches: [main, master] }
+  pull_request: { branches: [main, master] }
+jobs:
+  compile-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '22' }
+      - run: yarn install --frozen-lockfile
+      - name: Compact contract compile
+        run: |
+          if ! command -v compact >/dev/null; then
+            echo "::warning::compact not installed in CI image; attempting install"
+            curl -fsSL https://raw.githubusercontent.com/midnightntwrk/compact-utils/main/install.sh | bash
+          fi
+          if [ -d contract ]; then cd contract; elif [ -d contracts ]; then cd contracts; fi
+          CONRACT=\$(ls *.compact | head -1)
+          NAME=\$(echo "\$CONRACT" | sed 's/.compact//')
+          compact compile +0.31.1 "\$CONRACT" "managed/\$NAME"
+      - name: Test (declared count)
+        run: |
+          node -e "
+            const { readFileSync, readdirSync } = require('fs');
+            const { join } = require('path');
+            function* walk(d) { for (const e of readdirSync(d, { withFileTypes: true })) { const p = join(d, e.name); if (e.isDirectory()) yield* walk(p); else if (/\\.(ts|js|mjs)\$/.test(e.name)) yield p; } }
+            let n = 0;
+            for (const root of ['src/test', 'contract/test', 'contracts/test', 'api/test']) { try { for (const f of walk(root)) n += (readFileSync(f, 'utf8').match(/\\b(it|test)\\s*\\(/g) || []).length; } catch {} }
+            console.log('declared tests:', n);
+            if (n < 3) process.exit(1);
+          "
+      - name: Midnight audit
+        run: node .claude/skills/midnight-level-pack/scripts/midnight-audit.mjs --project . --target-level 3

@@ -1,0 +1,46 @@
+pragma language_version >= 0.23;
+
+import CompactStandardLibrary;
+
+// Aletheia — provenance without identity.
+//
+// A source holds a secret (sourceSecret) that never leaves their browser. A
+// submission binds a public media hash to a disclosure-controlled region and
+// period claim, and derives a nullifier from the media hash and the source
+// secret so the same capture cannot be submitted twice — without the
+// nullifier revealing who submitted it.
+
+struct SubmissionRecord {
+  regionId: Bytes<32>,
+  periodYear: Uint<16>
+}
+
+export ledger submissions: Map<Bytes<32>, SubmissionRecord>;
+export ledger submissionCount: Counter;
+
+witness sourceSecret(): Bytes<32>;
+
+export circuit submissionNullifier(mediaHash: Bytes<32>, sk: Bytes<32>): Bytes<32> {
+  return persistentHash<Vector<3, Bytes<32>>>(
+    [pad(32, "alt:sub:v1"), mediaHash, sk]
+  );
+}
+
+// Submit a predicate over a capture without submitting the capture, its
+// signing certificate, or the source's identity. regionId and periodYear
+// are the source's own choice of disclosure granularity, made in the
+// browser before this circuit ever runs.
+export circuit submit(
+  mediaHash: Bytes<32>,
+  regionId: Bytes<32>,
+  periodYear: Uint<16>
+): [] {
+  const n = submissionNullifier(disclose(mediaHash), sourceSecret());
+  assert(!submissions.member(disclose(n)), "already submitted");
+
+  submissions.insert(disclose(n), SubmissionRecord {
+    regionId: disclose(regionId),
+    periodYear: disclose(periodYear)
+  });
+  submissionCount.increment(1);
+}
